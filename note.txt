@@ -1,0 +1,36 @@
+python producer.py \
+  --video_path video/cam1.mp4 \
+  --cam_id cam1 \
+  --kafka_topic read \
+  --config_path kafka_config.yaml
+
+python producer.py \
+  --video_path video/cam2.mp4 \
+  --cam_id cam2 \
+  --kafka_topic read \
+  --config_path kafka_config.yml
+
+python producer.py \
+  --video_path video/videoplayback.mp4 \
+  --cam_id cam2 \
+  --kafka_topic read \
+  --config_path kafka_config.yaml
+
+python consumer.py \
+  --broker localhost:9092 \
+  --topic write \
+  --mongo-uri mongodb://localhost:27017/ \
+  --db traffic_db \
+  --collection camera_frames
+
+
+# Start kafka 
+./kafka_2.12-3.9.1/bin/zookeeper-server-start.sh -daemon ./kafka_2.12-3.9.1/config/zookeeper.properties
+./kafka_2.12-3.9.1/bin/kafka-server-start.sh -daemon ./kafka_2.12-3.9.1/config/server.properties
+# Create topic 
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic read
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic write
+
+#describe topic 
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --describe --bootstrap-server 127.0.0.1:9092 --topic read 
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --describe --bootstrap-server 127.0.0.1:9092 --topic write 
