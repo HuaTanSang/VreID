@@ -177,3 +177,6 @@ cython_debug/
 video/cam1.mp4
 video/cam2.mp4
 video/videoplayback.mp4
+.pt 
+receiver.ipynb
+sender.ipynb
