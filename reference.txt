@@ -1,0 +1,3 @@
+Some documents supporting this project: 
+    - https://pawankg.medium.com/pyspark-examples-real-time-batch-and-stream-processing-for-data-professionals-21d4e3891f0f
+    - https://blog.poespas.me/posts/2024/05/20/spark-structured-streaming-vs-micro-batch-processing/
