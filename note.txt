@@ -8,7 +8,7 @@ python producer.py \
   --video_path video/cam2.mp4 \
   --cam_id cam2 \
   --kafka_topic read \
-  --config_path kafka_config.yml
+  --config_path kafka_config.yaml
 
 python producer.py \
   --video_path video/videoplayback.mp4 \
@@ -23,6 +23,9 @@ python consumer.py \
   --db traffic_db \
   --collection camera_frames
 
+
+python3 streaming.py
+python3 streaming_new.py
 
 # Start kafka 
 ./kafka_2.12-3.9.1/bin/zookeeper-server-start.sh -daemon ./kafka_2.12-3.9.1/config/zookeeper.properties
