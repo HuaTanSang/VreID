@@ -48,6 +48,7 @@ def process_frame_batch(frame_series: pd.Series) -> pd.Series:
 spark_df = spark.readStream.format("kafka") \
     .option("kafka.bootstrap.servers", "localhost:9092") \
     .option("subscribe", "read") \
+    .option("checkpointLocation", "./checkpoint/read") \
     .option("startingOffsets", "latest") \
     .load()
 
