@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.env
+.venv
+env/
+venv/
+ENV/
+.ipynb_checkpoints/
+*.log
+*.sqlite3
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PyInstaller
+*.spec
+
+# Virtual environments
+pip-wheel-metadata/
+
+# Compiled model files
+*.pth
+*.onnx
+
+# Git LFS tracked binaries (also in .gitattributes)
+*.avi
+*.mov
+*.jpg
+*.jpeg
+*.png
+*.zip
+*.tar

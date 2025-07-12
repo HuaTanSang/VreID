@@ -1,0 +1,19 @@
+# Start kafka 
+./kafka_2.12-3.9.1/bin/zookeeper-server-start.sh -daemon ./kafka_2.12-3.9.1/config/zookeeper.properties
+./kafka_2.12-3.9.1/bin/kafka-server-start.sh -daemon ./kafka_2.12-3.9.1/config/server.properties
+
+# Create topic 
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam1
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam2
+
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam1
+./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam2 
+
+
+# Send video producer
+python3 ./pipeline/producer_cam1.py --kafka_topic sending-cam1 --video_path /home/huatansang/Documents/Big-data/video/Loc_1_0_inf.mp4 
+python3 ./pipeline/producer_cam2.py --kafka_topic sending-cam2 --video_path /home/huatansang/Documents/Big-data/video/Loc_1_1_inf.mp4 
+
+# start consumer 
+cd pipeline && python3 consumer.py 
+

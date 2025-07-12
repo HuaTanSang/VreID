@@ -1,0 +1,7 @@
+fastapi
+kafka-python
+pyspark==4.0.0
+numpy
+opencv-python
+uvicorn 
+pydantic 
