@@ -1,5 +1,5 @@
 # VreID  
-Cross Camera Vihicles Re-Identification.  
+Cross Camera Vehicles Re-Identification.  
 
 ## Introduction  
 This repository is to integrate Re-Identification-Project by @DuyPham2k4 to Spark-Kafka pipeline, thereby allowing realtime processing.  
@@ -10,7 +10,7 @@ Visiting his repository for detailed information or see it directly in the folde
 ## Preresquisite  
 **Kafka** ``3.5.0``  
 **Scala** ``2.13``   
-**Conda** ``python 3.9``  
+**Python** ``3.9``  
 **Ubuntu** ``22.04.5 LTS``
 
 ## Installation  
@@ -20,14 +20,26 @@ Visiting his repository for detailed information or see it directly in the folde
 ```sh 
 git clone https://github.com/HuaTanSang/VreID.git
 ```
-- Start **zoo-keeper** and **kafka-server**  
+
+- Installing dependencies   
+```sh 
+cd VreID
+pip install -r requirements.txt  
+cd Re-Identification-Project  
+pip install -r requirements.txt  
+cd deep-person-reid  
+pip install -r requirements.txt 
+python3 setup.py develop
+cd ../..
+```
+- Starting **zoo-keeper** and **kafka-server**  
 ```sh
 ./kafka_2.12-3.9.1/bin/zookeeper-server-start.sh -daemon ./kafka_2.12-3.9.1/config/zookeeper.properties 
 
 ./kafka_2.12-3.9.1/bin/kafka-server-start.sh -daemon ./kafka_2.12-3.9.1/config/server.properties
 ```
 
-- Creating necessary topic  
+- Creating necessary topics  
 ```sh 
 ./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam1
 ./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam2
@@ -41,9 +53,9 @@ git clone https://github.com/HuaTanSang/VreID.git
 cd pipeline && python3 consumer.py 
 ```
 
-- Running the producer  
+- Running the producers  
 ```sh
 python3 ./pipeline/producer_cam1.py --kafka_topic sending-cam1 --video_path path/to/the/first/video.mp4 
-python3 ./pipeline/producer_cam2.py --kafka_topic sending-cam2 --video_path path/to/the/second/video.mp4 
 
+python3 ./pipeline/producer_cam2.py --kafka_topic sending-cam2 --video_path path/to/the/second/video.mp4 
 ```
