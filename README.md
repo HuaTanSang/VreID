@@ -2,7 +2,7 @@
 Cross Camera Vehicles Re-Identification.  
 
 ## Introduction  
-This repository is to integrate Re-Identification-Project by @DuyPham2k4 to Spark-Kafka pipeline, thereby allowing realtime processing.  
+This repository is to integrate [Re-Identification-Project](https://github.com/PhamDuy204/Re-Identification-Project) by [@PhamDuy204](https://github.com/PhamDuy204) to Spark-Kafka pipeline, thereby allowing realtime processing.  
 Visiting his repository for detailed information or see it directly in the folder named Re-Identification-Project.  
 
 ## Pipeline  
@@ -34,18 +34,17 @@ cd ../..
 ```
 - Starting **zoo-keeper** and **kafka-server**  
 ```sh
-./kafka_2.12-3.9.1/bin/zookeeper-server-start.sh -daemon ./kafka_2.12-3.9.1/config/zookeeper.properties 
-
-./kafka_2.12-3.9.1/bin/kafka-server-start.sh -daemon ./kafka_2.12-3.9.1/config/server.properties
+./kafka_2.13-3.5.0/bin/zookeeper-server-start.sh -daemon ./kafka_2.13-3.5.0/config/zookeeper.properties
+./kafka_2.13-3.5.0/bin/kafka-server-start.sh -daemon ./kafka_2.13-3.5.0/config/server.properties
 ```
 
 - Creating necessary topics  
 ```sh 
-./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam1
-./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam2
+./kafka_2.13-3.5.0/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam1
+./kafka_2.13-3.5.0/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic sending-cam2
 
-./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam1
-./kafka_2.12-3.9.1/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam2 
+./kafka_2.13-3.5.0/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam1
+./kafka_2.13-3.5.0/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9092 --replication-factor 1 --partitions 1 --topic receive-cam2 
 ```
 
 - Running the consumer
